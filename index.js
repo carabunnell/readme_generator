@@ -58,9 +58,10 @@ function promptUser() {
             message: "what is your usage?"
         },
         {
-            type: "input",
+            type: "list",
             name: "license",
-            message: "what is your license?"
+            message: "what is your license?",
+            choices: ["Apache 2.0", "MIT", "GPL 3.0", "BSD 3", "none"]
         },
         {
             type: "input",
@@ -77,17 +78,44 @@ function promptUser() {
             name: "questions",
             message: "any questions?"
         },
-    ]);
+    ]);    
 }
+
 
 
 
 function createReadme(answers) {
-    return `# readme_generator\nBadge: $___badge here__$\n# Project Title\n${answers.title}\n# Description\n${answers.description}\n# Table of Contents\n${answers.tableof}\n# Installation\n${answers.installation}\n# Usage\n${answers.usage}\n# License\n${answers.license}\n# Contributors\n${answers.contributing}\n# Tests\n${answers.tests}\n# Questions\n${answers.questions}`;
+    return `
+    # ${answers.title}\n
+    ## Description\n
+    ${answers.description}\n
+    ## Table of Contents\n
+    * ${answers.tableof}\n
+    ## Installation\n
+    ${answers.installation}\n
+    ## Usage\n
+    ${answers.usage}\n
+    ## License\n
+    [![github license](https://img.shields.io/badge/License-${answers.license}-blue.svg)]\n
+    ## Contributors\n
+    ${answers.contributing}\n
+    ## Tests\n
+    ${answers.tests}\n
+    ## Questions\n
+    ${answers.questions}`;
 }
 
 promptUser()
     .then(function(answers) {
+        if (answers.license === "Apache 2.0") {
+            answers.license === "Apache%202.0";
+        }
+        else if (answers.license === "BSD 3") {
+            answers.license === "BSD%203";
+        }
+        else if (answers.license === "GPL 3.0") {
+            answers.license === "GPL%203.0";
+        }
         const md = createReadme(answers);
 
         return writeFileAsynch("readme/readme.md", md);
