@@ -83,7 +83,7 @@ function promptUser() {
 
 
 function createReadme(answers) {
-    return `# readme_generator\nBadge: $___badge here__$\nProject Title: ${answers.title}\nDescription: ${answers.description}\nTable of Contents: ${answers.tableof}\nInstallation: ${answers.installation}\nUsage: ${answers.usage}\nLicense: ${answers.license}\nContributors: ${answers.contributing}\nTests: ${answers.tests}\nQuestions: ${answers.questions}`;
+    return `# readme_generator\nBadge: $___badge here__$\n# Project Title\n${answers.title}\n# Description\n${answers.description}\n# Table of Contents\n${answers.tableof}\n# Installation\n${answers.installation}\n# Usage\n${answers.usage}\n# License\n${answers.license}\n# Contributors\n${answers.contributing}\n# Tests\n${answers.tests}\n# Questions\n${answers.questions}`;
 }
 
 promptUser()
