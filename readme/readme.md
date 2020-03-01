@@ -1,26 +1,16 @@
-# readme_generator
-Badge: $___badge here__$
+# 
+## Description
 
-    # Project Title
+## Table of Contents
+* 
+## Installation
 
+## Usage
 
-    # Description
+## License
+https://img.shields.io/badge/License-BSD%203--Clause-blue.svg
+## Contributors
 
-    
-# Table of Contents
+## Tests
 
-
-    # Installation
-
-
-    # Usage
-
-
-    # License
-[![github license](https://img.shields.io/badge/License-Apache 2.0-blue.svg)]
-    
-# Contributors
-
-# Tests
-
-# Questions
+## Questions

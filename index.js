@@ -61,7 +61,7 @@ function promptUser() {
             type: "list",
             name: "license",
             message: "what is your license?",
-            choices: ["Apache 2.0", "MIT", "GPL 3.0", "BSD 3", "none"]
+            choices: ["Apache%202.0", "MIT", "GPL 3.0", "BSD 3", "none"]
         },
         {
             type: "input",
@@ -84,39 +84,30 @@ function promptUser() {
 
 
 
-function createReadme(answers) {
-    return `
-    # ${answers.title}\n
-    ## Description\n
-    ${answers.description}\n
-    ## Table of Contents\n
-    * ${answers.tableof}\n
-    ## Installation\n
-    ${answers.installation}\n
-    ## Usage\n
-    ${answers.usage}\n
-    ## License\n
-    [![github license](https://img.shields.io/badge/License-${answers.license}-blue.svg)]\n
-    ## Contributors\n
-    ${answers.contributing}\n
-    ## Tests\n
-    ${answers.tests}\n
-    ## Questions\n
-    ${answers.questions}`;
+function createReadme(answers, license) {
+    if (license === "Apache 2.0") {
+        license = "https://img.shields.io/badge/License-Apache%202.0-blue.svg";
+    }
+    else if (license === "MIT") {
+        license = "https://img.shields.io/badge/License-MPL%202.0-brightgreen.svg";
+    }
+    else if (license = "BSD 3") {
+        license = "https://img.shields.io/badge/License-BSD%203--Clause-blue.svg";
+    }
+    else if (license === "GPL 3.0") {
+        license = "https://img.shields.io/badge/License-GPLv3-blue.svg)";
+    }
+    else {
+        license = "";
+    }
+    
+    return `# ${answers.title}\n## Description\n${answers.description}\n## Table of Contents\n* ${answers.tableof}\n## Installation\n${answers.installation}\n## Usage\n${answers.usage}\n## License\n${license}\n## Contributors\n${answers.contributing}\n## Tests\n${answers.tests}\n## Questions\n${answers.questions}`;
 }
 
 promptUser()
     .then(function(answers) {
-        if (answers.license === "Apache 2.0") {
-            answers.license === "Apache%202.0";
-        }
-        else if (answers.license === "BSD 3") {
-            answers.license === "BSD%203";
-        }
-        else if (answers.license === "GPL 3.0") {
-            answers.license === "GPL%203.0";
-        }
-        const md = createReadme(answers);
+        
+        const md = createReadme(answers, answers.license);
 
         return writeFileAsynch("readme/readme.md", md);
     })
